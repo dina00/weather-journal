@@ -29,7 +29,7 @@ const callToAPI = async (url, location, key) => {
         console.log('Response:', data.main.temp);
         return data;
     } catch(error) {
-        console.log(error);
+        console.log('error in fetching data',error);
     };
 };
 
