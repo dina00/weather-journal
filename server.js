@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = [];
+projectData = {};
 
 // Require Express to run server and routes
 var express = require('express');
@@ -35,5 +35,5 @@ app.post('/send', function(request,respose){
     date:data.date,
     resposeData:data.responseData
     };
-    projectData.unshift(userData);
+    projectData=userData;
 });

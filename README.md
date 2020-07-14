@@ -5,8 +5,11 @@ This project consists of creating an asynchronous web app that uses Web API and 
 
 ## Features
 * Updates the UI with the temperature of a given location that the user inputs.
+* Updates the UI with the feeling that the user enters.
 
 ## How To Use:
+* Create API credentials on [OpenWeatherMap](https://openweathermap.org/).
+* Install [nodejs](https://nodejs.org/en/download/).
 * Install express `npm install express`.
 * Install cors`npm install cors`.
 * Install body parser`npm install body-parser`.

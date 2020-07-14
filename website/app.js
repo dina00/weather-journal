@@ -1,6 +1,7 @@
 /* Global Variables */
 const key='854296e77b76a6af16cb59919339e2a8';
-const url ='https://api.openweathermap.org/data/2.5/weather?q='
+const url ='https://api.openweathermap.org/data/2.5/weather?q=';
+const unit ='&units=metric';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -13,7 +14,7 @@ function performAction(event){
     const location = document.getElementById('zip').value;
     const responseData = document.getElementById('feelings').value;
 
-    callToAPI(url, location, key)
+    callToAPI(url, location, unit, key)
     .then(function(data) {
         //visit https://openweathermap.org/current to get an example of the json data received 
         postData('/send', {temperature: data.main.temp, date: newDate, responseData: responseData}); 
@@ -22,11 +23,12 @@ function performAction(event){
 };
 
 // function to get the data from the api
-const callToAPI = async (url, location, key) => {
-    const response  = await fetch( url + location + '&APPID=' + key);
+const callToAPI = async (url, location, unit, key) => {
+    const response  = await fetch( url + location +unit+ '&APPID=' + key);
     try {
+        // console.log(url + location +unit+'&APPID=' + key);
         const data = await response.json();
-        console.log('Response:', data.main.temp);
+        // console.log('Response:', data.main.temp);
         return data;
     } catch(error) {
         console.log('error in fetching data',error);
@@ -58,9 +60,9 @@ const updateInterface = async(url='') => {
     const request = await fetch(url);
     try {
         const updatedData = await request.json();
-        document.getElementById('date').innerHTML = updatedData[0].date;
-        document.getElementById('temp').innerHTML = updatedData[0].temperature;
-        document.getElementById('content').innerHTML = updatedData[0].resposeData;
+        document.getElementById('date').innerHTML = updatedData.date;
+        document.getElementById('temp').innerHTML = updatedData.temperature;
+        document.getElementById('content').innerHTML = updatedData.resposeData;
     } catch(error) {
         console.log(error);
     };
